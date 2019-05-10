@@ -32,17 +32,18 @@ npm run local (访问本地后台系统，需运行node-elm后台系统)
 ```
 
 # 任务列表
-- [ ] 软件说明  代码位置  src\page\explain.vue
-- [ ] 设置功能  代码位置  src\page\adminSet.vue
-- [ ] 文本编辑  代码位置  src\page\vueEdit.vue
-- [ ] 用户分布  代码位置  src\page\visitor.vue
-- [ ] 用户列表  代码位置  src\page\userList.vue
-- [ ] 商家列表  代码位置  src\page\shopList.vue
-- [ ] 食品列表  代码位置  src\page\foodList.vue
-- [ ] 订单列表  代码位置  src\page\orderList.vue
-- [ ] 管理员列表  代码位置  src\page\adminList.vue
-- [ ] 添加商铺  代码位置  src\page\addShop.vue
-- [ ] 添加商品  代码位置  src\page\addGoods.vue
+- [ ] 软件说明     src\page\explain.vue
+- [ ] 设置功能     src\page\adminSet.vue
+- [ ] 文本编辑     src\page\vueEdit.vue
+- [ ] 用户分布     src\page\visitor.vue
+- [ ] 用户列表     src\page\userList.vue
+- [ ] 商家列表     src\page\shopList.vue
+- [ ] 食品列表     src\page\foodList.vue
+- [ ] 订单列表     src\page\orderList.vue
+- [ ] 管理员列表   src\page\adminList.vue
+- [ ] 添加商铺     src\page\addShop.vue
+- [ ] 添加商品     src\page\addGoods.vue
+- [ ] 首页功能     src\page\home.vue
 
 
 
