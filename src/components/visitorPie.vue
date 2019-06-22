@@ -1,6 +1,6 @@
 <template>
     <div class="visitorpie">
-        <div id="visitorpie" class="" style="width: 90%;height:450px;"></div>
+        <div id="visitorpie" class="" style="width: 90%;height:650px;"></div>
     </div>
 </template>
 
@@ -38,8 +38,9 @@
                         {
                             name: '访问来源',
                             type: 'pie',
-                            radius : '55%',
-                            center: ['50%', '60%'],
+                            radius : [50, 200],
+                            center: ['50%', '50%'],
+                            roseType : 'area',
                             data:[
                                 {value:this.pieData.beijing, name:'北京'},
                                 {value:this.pieData.shanghai, name:'上海'},
@@ -57,7 +58,6 @@
                         }
                     ]
                 };
-
                 this.myChart.setOption(option);
             }
         },
