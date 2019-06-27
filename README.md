@@ -38,7 +38,7 @@ npm run local (访问本地后台系统，需运行node-elm后台系统)
 - [X] 用户分布     src\page\visitor.vue
 - [X] 用户列表     src\page\userList.vue
 - [X] 商家列表     src\page\shopList.vue
-- [ ] 食品列表     src\page\foodList.vue
+- [X] 食品列表     src\page\foodList.vue
 - [ ] 订单列表     src\page\orderList.vue
 - [ ] 管理员列表   src\page\adminList.vue
 - [ ] 添加商铺     src\page\addShop.vue
