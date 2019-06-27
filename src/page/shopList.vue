@@ -175,7 +175,7 @@
     		headTop,
     	},
         methods: {
-            async initData(){//获取初始化数据
+            async initData(){//获取店铺数量和信息
                 try{
                     this.city = await cityGuess();
                     const countData = await getResturantsCount();
@@ -250,7 +250,7 @@
                     this.getCategory();
                 }
             },
-            addFood(index, row){
+            addFood(index, row){//跳转页面并传参
                 this.$router.push({ path: 'addGoods', query: { restaurant_id: row.id }})
             },
             async handleDelete(index, row) {//删除店铺
