@@ -234,7 +234,7 @@
     		headTop,
     	},
         methods: {
-            async initData(){//获取初始化数据
+            async initData(){//获取获取食品数量和信息
                 try{
                     const countData = await getFoodsCount({restaurant_id: this.restaurant_id});
                     if (countData.status == 1) {
