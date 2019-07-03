@@ -84,7 +84,7 @@
                 <el-form :model="selectTable">
 
                     <el-form-item label="店铺名称" label-width="100px">
-                        <el-input v-model="selectTable.name" auto-complete="off"></el-input>
+                        <el-input v-model="selectTable.name" autocomplete="off"></el-input>
                     </el-form-item>
 
                     <el-form-item label="详细地址" label-width="100px">
