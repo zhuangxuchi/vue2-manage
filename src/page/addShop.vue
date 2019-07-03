@@ -4,9 +4,11 @@
         <el-row style="margin-top: 20px;">
   			<el-col :span="12" :offset="4">
 		        <el-form :model="formData" :rules="rules" ref="formData" label-width="110px" class="demo-formData">
+
 					<el-form-item label="店铺名称" prop="name">
 						<el-input v-model="formData.name"></el-input>
 					</el-form-item>
+
 					<el-form-item label="详细地址" prop="address">
 						<el-autocomplete
 						  v-model="formData.address"
@@ -17,15 +19,19 @@
 						></el-autocomplete>
 						<span>当前城市：{{city.name}}</span>
 					</el-form-item>
+
 					<el-form-item label="联系电话" prop="phone">
 						<el-input v-model.number="formData.phone" maxLength="11"></el-input>
 					</el-form-item>
+
 					<el-form-item label="店铺简介" prop="description">
 						<el-input v-model="formData.description"></el-input>
 					</el-form-item>
+
 					<el-form-item label="店铺标语" prop="promotion_info">
 						<el-input v-model="formData.promotion_info"></el-input>
 					</el-form-item>
+
 					<el-form-item label="店铺分类">
 						<el-cascader
                           expand-trigger="hover"
@@ -50,12 +56,15 @@
 						<span>开发票</span>
 						<el-switch on-text="" off-text="" v-model="formData.piao"></el-switch>
 					</el-form-item>
+                    
 					<el-form-item label="配送费" prop="float_delivery_fee">
 						<el-input-number v-model="formData.float_delivery_fee" :min="0" :max="20"></el-input-number>
 					</el-form-item>
+
 					<el-form-item label="起送价" prop="float_minimum_order_amount">
 						<el-input-number v-model="formData.float_minimum_order_amount" :min="0" :max="100"></el-input-number>
 					</el-form-item>
+
 					<el-form-item label="营业时间" style="white-space: nowrap;">
 						<el-time-select
 							placeholder="起始时间"
@@ -66,6 +75,7 @@
 							end: '23:30'
 							}">
 						</el-time-select>
+                        
 						<el-time-select
 							placeholder="结束时间"
 							v-model="formData.endTime"
@@ -146,7 +156,7 @@
 					    <el-table-column
 					    	label="操作"
 					    	width="120">
-					    <template slot-scope="scope">
+					    <template v-slot="scope">
 					        <el-button
 					          size="small"
 					          type="danger"
@@ -176,22 +186,22 @@
 					address: '', //地址
 					latitude: '',
 					longitude: '',
-					description: '', //介绍
-					phone: '',
-					promotion_info: '',
+					description: '', //活动详情
+					phone: '', //联系电话
+					promotion_info: '', //店铺标语
 					float_delivery_fee: 5, //运费
 					float_minimum_order_amount: 20, //起价
-					is_premium: true,
+					is_premium: true, //按钮
 					delivery_mode: true,
 					new: true,
 					bao: true,
 					zhun: true,
 					piao: true,
-					startTime: '',
-       	 			endTime: '',
-       	 			image_path: '',
-       	 			business_license_image: '',
-       	 			catering_service_license_image: '',
+					startTime: '', //起始时间
+       	 			endTime: '', //结束时间
+       	 			image_path: '', //店铺头像
+       	 			business_license_image: '', //营业执照
+       	 			catering_service_license_image: '', //餐饮服务许可证
 		        },
 		        rules: {
 					name: [
@@ -222,12 +232,12 @@
 				activities: [{
 		        	icon_name: '减',
 		        	name: '满减优惠',
-		        	description: '满30减5，满60减8',
+		        	description: '满5减30，满8减60',
 			    }],
 			    baseUrl,
 			    baseImgPath,
 			    categoryOptions: [],
-			    selectedCategory: ['快餐便当', '简餐']
+			    selectedCategory: ['小吃夜宵', '烧烤']
     		}
     	},
     	components: {
@@ -237,7 +247,7 @@
     		this.initData();
     	},
     	methods: {
-    		async initData(){
+    		async initData(){//获取城市和店铺分类
     			try{
     				this.city = await cityGuess();
     				const categories = await foodCategory();
@@ -264,7 +274,7 @@
     				console.log(err);
     			}
     		},
-    		async querySearchAsync(queryString, cb) {
+    		async querySearchAsync(queryString, cb) {//获取地址列表
     			if (queryString) {
 	    			try{
 	    				const cityList = await searchplace(this.city.id, queryString);
@@ -280,7 +290,7 @@
 	    			}
     			}
 		    },
-		    addressSelect(address){
+		    addressSelect(address){//打印经纬度
 		    	this.formData.latitude = address.latitude;
 		    	this.formData.longitude = address.longitude;
 		    	console.log(this.formData.latitude, this.formData.longitude)
@@ -317,24 +327,21 @@
 				}
 				return isRightType && isLt2M;
 			},
-			tableRowClassName(row, index) {
-		        if (index === 1) {
+			tableRowClassName(row, index) {//表格行高亮
+		        if (index % 2 === 1) {
 		        	return 'info-row';
-		        } else if (index === 3) {
+		        } else if (index % 2 === 0) {
 		        	return 'positive-row';
 		        }
 		        return '';
 		    },
-		    selectActivity(){
+		    selectActivity(){//创建活动
 		    	this.$prompt('请输入活动详情', '提示', {
 		          	confirmButtonText: '确定',
 		          	cancelButtonText: '取消',
-		        }).then(({ value }) => {
+		        }).then(({ value }) => {//value==活动详情
 		        	if (value == null) {
-		        		this.$message({
-				            type: 'info',
-				            message: '请输入活动详情'
-				        });
+		        		this.$message.error('请输入活动详情');
 		        		return
 		        	}
 		          	let newObj = {};
@@ -371,18 +378,18 @@
 		          	this.activities.push(newObj);
 		        }).catch(() => {
 		          	this.$message({
-		            	type: 'info',
+		            	type: 'warning',
 		            	message: '取消输入'
 		          	});
 		        });
 		    },
-		    handleDelete(index){
+		    handleDelete(index){//删除活动
 		    	this.activities.splice(index, 1)
 		    },
-		    submitForm(formName) {
-				this.$refs[formName].validate(async (valid) => {
+		    submitForm(formName) {//创建商铺
+				this.$refs[formName].validate(async (valid) => {//表单验证
 					if (valid) {
-						Object.assign(this.formData, {activities: this.activities}, {
+						Object.assign(this.formData, {activities: this.activities}, {//将activities: this.activities复制到this.formData
 							category: this.selectedCategory.join('/')
 						})
 						try{
@@ -391,7 +398,8 @@
 								this.$message({
 					            	type: 'success',
 					            	message: '添加成功'
-					          	});
+								  });
+								//初始化数据
 					          	this.formData = {
 									name: '', //店铺名称
 									address: '', //地址
@@ -414,7 +422,7 @@
 				       	 			business_license_image: '',
 				       	 			catering_service_license_image: '',
 						        };
-						        this.selectedCategory = ['快餐便当', '简餐'];
+						        this.selectedCategory = ['小吃夜宵', '烧烤'];
 						        this.activities = [{
 						        	icon_name: '减',
 						        	name: '满减优惠',
@@ -431,7 +439,7 @@
 							console.log(err)
 						}
 					} else {
-						this.$notify.error({
+						this.$notify.error({//页面角落通知
 							title: '错误',
 							message: '请检查输入是否正确',
 							offset: 100

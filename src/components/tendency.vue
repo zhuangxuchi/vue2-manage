@@ -22,7 +22,7 @@
         props: ['sevenDate', 'sevenDay'],
         methods: {
             initData(){
-                const colors = ['#5793f3', '#675bba', '#d14a61'];
+                const colors = ['#5793f3', '#006600', '#d14a61'];
                 const option = {
                     color: colors,
                     title: {
@@ -56,7 +56,7 @@
                           type: 'value',
                           name: '用户',
                           min: 0,
-                          max: 200,
+                          max: 500,
                           position: 'left',
                           axisLine: {
                               lineStyle: {
@@ -71,7 +71,7 @@
                           type: 'value',
                           name: '订单',
                           min: 0,
-                          max: 200,
+                          max: 500,
                           position: 'right',
                           axisLine: {
                               lineStyle: {
