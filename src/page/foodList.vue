@@ -88,7 +88,7 @@
             <el-dialog title="修改食品信息" v-model="dialogFormVisible">
                 <el-form :model="selectTable">
                     <el-form-item label="食品名称" label-width="100px">
-                        <el-input v-model="selectTable.name" auto-complete="off"></el-input>
+                        <el-input v-model="selectTable.name" autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="食品介绍" label-width="100px">
                         <el-input v-model="selectTable.description"></el-input>
@@ -157,7 +157,7 @@
             <el-dialog title="添加规格" v-model="specsFormVisible">
 			  	<el-form :rules="specsFormrules" :model="specsForm">
 				    <el-form-item label="规格" label-width="100px" prop="specs">
-				     	<el-input v-model="specsForm.specs" auto-complete="off"></el-input>
+				     	<el-input v-model="specsForm.specs" autocomplete="off"></el-input>
 				    </el-form-item>
 				    <el-form-item label="包装费" label-width="100px">
 						<el-input-number v-model="specsForm.packing_fee" :min="0" :max="100"></el-input-number>
